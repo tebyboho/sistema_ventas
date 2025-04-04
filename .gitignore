@@ -1,6 +1,8 @@
 /sistema_ventas
 /__pycache__
+/sistema_core/app/__pycache__
 .DS_Store
 estructura_a_seguir.txt
 .env
 test.py
+troubleshootings.txt
