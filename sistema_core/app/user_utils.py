@@ -39,10 +39,14 @@ def eliminar_usuario(user_id=None):
     print("Usuario eliminado con éxito✅")
     
 
+def mostrar_usuarios():
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT * FROM usuarios")).fetchall()
+        print(result)
+        
 #crear_usuario('Daira', 'correo1@gmail.com', 'admin', 1 )
 #crear_usuario('Magali', 'correo2@gmail.com', 'admin', 2 )
 #crear_usuario('Gabriela', 'correo3@gmail.com', 'admin', 3 )
 #crear_usuario('Teby', 'correo4@gmail.com', 'admin', 4 )
 #eliminar_usuario()
-
-    
+#mostrar_usuarios()
