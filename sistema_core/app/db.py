@@ -1,8 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.engine.url import URL
 from sqlalchemy.exc import SQLAlchemyError
-import os
-from config import DB_CONFIG
+from app.config import DB_CONFIG
 
 
 # Construcción de la URL de conexión

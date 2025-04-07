@@ -1,6 +1,6 @@
 from werkzeug.security import generate_password_hash
 from sqlalchemy import text 
-from db import engine 
+from app.db import engine 
 
 '''This is a testing function. In the future will be adapted to a production one'''
 def crear_usuario(nombre, email, password, rol_id):

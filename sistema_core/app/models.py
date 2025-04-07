@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, MetaData, Table
-from db import engine
+from app.db import engine
 
 # Instancia de MetaData
 metadata = MetaData()
