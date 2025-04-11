@@ -40,20 +40,27 @@ def login():
     
     #empleado, encargado, admin, superusuario
     if rol_id == 1:
-        return redirect(url_for("routes.dashboard_general"))
-        print('logeo exitoso')
+        return redirect(url_for("routes.dashboard_empleado"))
     elif rol_id == 2:
-        return redirect(url_for("routes.dashboard_general"))
+        return redirect(url_for("routes.dashboard_encargado"))
     elif rol_id == 3:
-        return redirect(url_for("routes.dashboard_general"))
+        return redirect(url_for("routes.dashboard_administrador"))
     elif rol_id == 4:
-        return redirect(url_for("routes.dashboard_general"))
+        return redirect(url_for("routes.dashboard_empleado"))
     
     else:
         flash("Rol no reconocido", "danger")
         return redirect(url_for("routes.login_form"))
     
 
-@routes.route('/dashboard-general')
-def dashboard_general():
-    return render_template('dashboard_general.html')
+@routes.route('/dashboard-empleado')
+def dashboard_empleado():
+    return render_template('dashboard_empleado.html')
+
+@routes.route('/dashboard-encargado')
+def dashboard_encargado():
+    return render_template('dashboard_encargado.html')
+
+@routes.route('/dashboard-administrador')
+def dashboard_administrador():
+    return render_template('dashboard_administrador.html')
