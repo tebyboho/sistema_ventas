@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Agregar nuevo producto</h2>
+<a href="{{ url_for('main.dashboard_general') }}" class="btn btn-primary">Volver</a>
+    
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<div class="container-fluid py-4">
+    <div class="form-container">
+        <h2 class="form-title text-center">Registro de Producto</h2>
+        
+        <form method="POST">
+            <div class="row">
+                <!-- Información básica del producto -->
+                <div class="col-md-4">
+                    <div class="section-title">Información Básica</div>
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Descripción</label>
+                        <textarea name="descripcion" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Código de Barras</label>
+                        <input type="text" name="codigo_barras" class="form-control">
+                    </div>
+                </div>
+                
+                <!-- Información de precios y stock -->
+                <div class="col-md-4">
+                    <div class="section-title">Precios y Stock</div>
+                    <div class="mb-3">
+                        <label class="form-label">Precio Costo</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" step="0.01" name="precio_costo" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Precio Venta</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" step="0.01" name="precio_venta" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Impuestos (%)</label>
+                        <div class="input-group">
+                            <input type="number" step="0.01" name="impuestos" class="form-control">
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Stock Actual</label>
+                        <input type="number" name="stock_actual" class="form-control">
+                    </div>
+                </div>
+                
+                <!-- Clasificación y ubicación -->
+                <div class="col-md-4">
+                    <div class="section-title">Clasificación y Ubicación</div>
+                    <div class="mb-3">
+                        <label class="form-label">Categoría</label>
+                        <select name="categoria_id" class="form-select">
+                            <option value="">Seleccione una categoría</option>
+                            <option value="1">Electrónica</option>
+                            <option value="2">Ropa</option>
+                            <option value="3">Alimentos</option>
+                            <option value="4">Hogar</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Proveedor</label>
+                        <select name="proveedor_id" class="form-select">
+                            <option value="">Seleccione un proveedor</option>
+                            <option value="1">Proveedor A</option>
+                            <option value="2">Proveedor B</option>
+                            <option value="3">Proveedor C</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Talle</label>
+                        <select name="talle_id" class="form-select">
+                            <option value="">Seleccione un talle</option>
+                            <option value="1">S</option>
+                            <option value="2">M</option>
+                            <option value="3">L</option>
+                            <option value="4">XL</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Sucursal</label>
+                        <select name="sucursal_id" class="form-select">
+                            <option value="">Seleccione una sucursal</option>
+                            <option value="1">Sucursal Central</option>
+                            <option value="2">Sucursal Norte</option>
+                            <option value="3">Sucursal Sur</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary px-5">Guardar Producto</button>
+                    <button type="reset" class="btn btn-outline-secondary ms-2">Limpiar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

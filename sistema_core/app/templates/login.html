@@ -65,6 +65,15 @@
 </head>
 <body>
   <div class="login-container">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
     <h2>Login</h2>
     <form action="/login" method="post">
       <div class="form-group">

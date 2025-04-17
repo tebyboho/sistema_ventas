@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Bienvenido al sistema, {{ session['nombre'] }}</h1>
+
+<div class="menu-secciones">
+  <a href="{{ url_for('stock.agregar_producto') }}" class="btn btn-primary">Gestión de Stock</a>
+</div>
+
+
+{% endblock %}
