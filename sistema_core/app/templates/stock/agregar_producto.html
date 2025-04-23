@@ -3,7 +3,9 @@
 {% block content %}
 
 <h2>Agregar nuevo producto</h2>
-<a href="{{ url_for('main.dashboard_general') }}" class="btn btn-primary">Volver</a>
+    <div>
+        <a href="{{ url_for('main.dashboard_general') }}" class="btn btn-primary">Volver</a>
+    </div>
     
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
@@ -73,38 +75,36 @@
                         <label class="form-label">Categoría</label>
                         <select name="categoria_id" class="form-select">
                             <option value="">Seleccione una categoría</option>
-                            <option value="1">Electrónica</option>
-                            <option value="2">Ropa</option>
-                            <option value="3">Alimentos</option>
-                            <option value="4">Hogar</option>
+                            {% for cat in categorias %}
+                                <option value="{{ cat.id }}">{{ cat.nombre}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Proveedor</label>
                         <select name="proveedor_id" class="form-select">
                             <option value="">Seleccione un proveedor</option>
-                            <option value="1">Proveedor A</option>
-                            <option value="2">Proveedor B</option>
-                            <option value="3">Proveedor C</option>
+                            {% for prov in proveedores %}
+                                <option value="{{ prov.id }}">{{ prov.nombre }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Talle</label>
                         <select name="talle_id" class="form-select">
                             <option value="">Seleccione un talle</option>
-                            <option value="1">S</option>
-                            <option value="2">M</option>
-                            <option value="3">L</option>
-                            <option value="4">XL</option>
+                            {% for t in talles %}
+                                <option value="{{ t.id }}">{{ t.nombre }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Sucursal</label>
                         <select name="sucursal_id" class="form-select">
                             <option value="">Seleccione una sucursal</option>
-                            <option value="1">Sucursal Central</option>
-                            <option value="2">Sucursal Norte</option>
-                            <option value="3">Sucursal Sur</option>
+                            {% for suc in sucursales %}
+                                <option value="{{ suc.id }}">{{ suc.nombre }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
