@@ -20,22 +20,37 @@
         <h2 class="form-title text-center">Registro de Producto</h2>
         
        
-        <form method="POST">
+        <form method="POST" autocomplete="off"> <!--el autocomplete=off para evitra que google autocomplete con valores pasados-->
+            {{ form.csrf_token }}
             <div class="row">
                 <!-- Información básica del producto -->
                 <div class="col-md-4">
                     <div class="section-title">Información Básica</div>
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
-                        <input type="text" name="nombre" class="form-control" required>
+                        {{ form.nombre(class="form-control") }}
+                        <!--validacion perteciente que viene desde el backend-->
+                        {% if form.nombre.errors %}
+                            <div class="text-danger">
+                                {{ form.nombre.errors[0] }}
+                            </div>
+                        {% endif %}
+                        <!--<input type="text" name="nombre" class="form-control" required> -->
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Descripción</label>
-                        <textarea name="descripcion" class="form-control" rows="3"></textarea>
+                        {{ form.descripcion(class="form-control") }}
+                        <!-- <textarea name="descripcion" class="form-control" rows="3"></textarea> -->
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Código de Barras</label>
-                        <input type="text" name="codigo_barras" class="form-control">
+                        {{ form.codigo(class="form-control") }}
+                        {% if form.codigo.errors %}
+                            <div class="text-danger">
+                                {{ form.codigo.errors[0] }}
+                            </div>
+                        {% endif %}
+                        <!--<input type="text" name="codigo_barras" class="form-control">-->
                     </div>
                 </div>
                 
@@ -46,26 +61,40 @@
                         <label class="form-label">Precio Costo</label>
                         <div class="input-group">
                             <span class="input-group-text">$</span>
-                            <input type="number" step="0.01" name="precio_costo" class="form-control" required>
+                            {{ form.precio_costo(class="form-control") }}
+                            {% if form.precio_costo.errors %}
+                                <div class="text-danger">
+                                    {{ form.precio_costo.errrors[0 ]}}
+                                </div>
+                            {% endif %}
+                            <!-- <input type="number" step="0.01" name="precio_costo" class="form-control" required> -->
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Precio Venta</label>
                         <div class="input-group">
                             <span class="input-group-text">$</span>
-                            <input type="number" step="0.01" name="precio_venta" class="form-control" required>
+                            {{ form.precio_venta(class="form-control") }}
+                            {% if form.precio_venta.errors %}
+                                <div class="text-danger">
+                                    {{ form.precio_venta.errors[0] }}
+                                </div>
+                            {% endif %}
+                            <!-- <input type="number" step="0.01" name="precio_venta" class="form-control" required> -->
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Impuestos (%)</label>
                         <div class="input-group">
-                            <input type="number" step="0.01" name="impuestos" class="form-control">
+                            {{ form.impuestos(class="form-control") }}
+                            <!-- <input type="number" step="0.01" name="impuestos" class="form-control"> -->
                             <span class="input-group-text">%</span>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Stock Actual</label>
-                        <input type="number" name="stock_actual" class="form-control">
+                        {{ form.stock_actual(class="form-control") }}
+                        <!-- <input type="number" name="stock_actual" class="form-control"> -->
                     </div>
                 </div>
                 
@@ -74,39 +103,47 @@
                     <div class="section-title">Clasificación y Ubicación</div>
                     <div class="mb-3">
                         <label class="form-label">Categoría</label>
-                        <select name="categoria_id" class="form-select">
-                            <option value="">Seleccione una categoría</option>
-                            {% for cat in categorias %}
-                                <option value="{{ cat.id }}">{{ cat.nombre}}</option>
-                            {% endfor %}
-                        </select>
+                        {{ form.categoria(class="form-select")}}
+                        {% if form.categoria.errors %}
+                            <div class="text-danger">
+                                {{ form.categoria.errors[0]}}
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Proveedor</label>
-                        <select name="proveedor_id" class="form-select">
+                        {{ form.proveedor(class="form-select") }}
+                        <!-- <select name="proveedor_id" class="form-select">
                             <option value="">Seleccione un proveedor</option>
                             {% for prov in proveedores %}
                                 <option value="{{ prov.id }}">{{ prov.nombre }}</option>
                             {% endfor %}
-                        </select>
+                        </select> -->
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Talle</label>
-                        <select name="talle_id" class="form-select">
+                        {{ form.talle(class="form-select") }}
+                        <!-- <select name="talle_id" class="form-select">
                             <option value="">Seleccione un talle</option>
                             {% for t in talles %}
                                 <option value="{{ t.id }}">{{ t.nombre }}</option>
                             {% endfor %}
-                        </select>
+                        </select> -->
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Sucursal</label>
-                        <select name="sucursal_id" class="form-select">
+                        {{ form.sucursal(class="form-select") }}
+                        {% if form.sucursal.errors %}
+                            <div class="text-danger">
+                                {{ form.sucursal.errors[0] }}
+                            </div>
+                        {% endif %}
+                        <!-- <select name="sucursal_id" class="form-select">
                             <option value="">Seleccione una sucursal</option>
                             {% for suc in sucursales %}
                                 <option value="{{ suc.id }}">{{ suc.nombre }}</option>
                             {% endfor %}
-                        </select>
+                        </select> -->
                     </div>
                 </div>
             </div>

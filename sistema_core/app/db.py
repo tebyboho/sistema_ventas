@@ -15,7 +15,7 @@ DATABASE_URL = URL.create(
 )
 
 # Crear la conexión a la base de datos
-engine = create_engine(DATABASE_URL, echo=True)  # echo=True para ver las consultas en consola
+engine = create_engine(DATABASE_URL)  # echo=True para ver las consultas en consola
 
 def test_connection():
     try:
