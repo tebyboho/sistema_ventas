@@ -7,7 +7,7 @@ class ProductoFormStock(Form):
     nombre = StringField('Nombre', validators=[InputRequired(message="El nombre es obligatorio."),
                                                Length(min=2, max=30)])
     descripcion = TextAreaField('Descripcion', validators=[Length(min=2, max=30)])
-    codigo = StringField('Codigo de Barras', validators=[InputRequired(message="Se necesita agregar un codigo.")])
+    codigo = StringField('Codigo de Barras') #, validators=[InputRequired(message="Se necesita agregar un codigo."
     precio_costo = IntegerField('Precio Costo', validators=[InputRequired(message="Se debe ingresar un valor.")])
     precio_venta = IntegerField('Precio Venta', validators=[InputRequired(message="Se debe ingresar un valor.")])
     impuestos = IntegerField('Impuestos')
@@ -25,6 +25,14 @@ class ProductoFormStock(Form):
     proveedor = SelectField('Proveedor', choices=proveedor_choices)
     talle = SelectField('Talles', choices=talles_choices)
     sucursal = SelectField('Talles', choices=talles_choices)
+    
+    '''usar esta forma para cargar las opcioens del select 
+     <!-- <select name="proveedor_id" class="form-select">
+                            <option value="">Seleccione un proveedor</option>
+                            {% for prov in proveedores %}
+                                <option value="{{ prov.id }}">{{ prov.nombre }}</option>
+                            {% endfor %}
+        </select> -->'''
 
 
 form = ProductoFormStock()

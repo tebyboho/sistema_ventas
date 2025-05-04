@@ -20,7 +20,7 @@
         <h2 class="form-title text-center">Registro de Producto</h2>
         
        
-        <form method="POST" autocomplete="off"> <!--el autocomplete=off para evitra que google autocomplete con valores pasados-->
+        <form method="POST" id="form-agregar" autocomplete="off"> <!--el autocomplete=off para evitra que google autocomplete con valores pasados-->
             {{ form.csrf_token }}
             <div class="row">
                 <!-- Información básica del producto -->
@@ -44,7 +44,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Código de Barras</label>
-                        {{ form.codigo(class="form-control") }}
+                        {{ form.codigo(class="form-control", id="codigo") }}
                         {% if form.codigo.errors %}
                             <div class="text-danger">
                                 {{ form.codigo.errors[0] }}
@@ -64,7 +64,7 @@
                             {{ form.precio_costo(class="form-control") }}
                             {% if form.precio_costo.errors %}
                                 <div class="text-danger">
-                                    {{ form.precio_costo.errrors[0 ]}}
+                                    {{ form.precio_costo.errors[0 ]}}
                                 </div>
                             {% endif %}
                             <!-- <input type="number" step="0.01" name="precio_costo" class="form-control" required> -->
@@ -150,12 +150,34 @@
             
             <div class="row mt-4">
                 <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary px-5">Guardar Producto</button>
+                    <button type="submit" class="btn btn-primary px-5" id="btn-submit">Guardar Producto</button>
                     <button type="reset" class="btn btn-outline-secondary ms-2">Limpiar</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+<!-- MODAL -->
+<div class="modal fade" id="confirmarCodigoModal" tabindex="-1" aria-labelledby="confirmarCodigoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">¿Generar código de barras?</h5>
+        </div>
+        <div class="modal-body">
+          Este producto no tiene un código de barras ingresado.<br>
+          ¿Deseás generar uno automáticamente?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="confirmar-generacion">Sí, generar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- <script src="{{ url_for('static', filename='../static/agregar_producto.js') }}"></script> -->
+
 
 {% endblock %}

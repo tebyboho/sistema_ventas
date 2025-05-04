@@ -23,20 +23,21 @@ def agregar_producto():
         precio_venta = request.form.get('precio_venta')
         stock_actual = request.form.get('stock_actual')
         codigo_barras = request.form.get('codigo_barras')
-        categoria_id = request.form.get('categoria_id') or None
+        categoria = request.form.get('categoria_id') or None
         proveedor_id = request.form.get('proveedor_id') or None
         talle_id = request.form.get('talle_id') or None
         impuestos = request.form.get('impuestos') or 0
         # Revisar que ya no hay mas columna sucursal en la tabla productos. Este insert debe ir a producto y stock.
         sucursal_id = request.form.get('sucursal_id') or None #este deberia ser obligatorio
         
+        
         query = text("""
                      INSERT INTO productos (
                          nombre, descripcion, precio_costo, precio_venta, stock_actual,
-                         codigo_barras, categoria_id, proveedor_id, talle_id, impuestos, sucursal_id
+                         codigo_barras, categoria_id, proveedor_id, talle_id, impuestos
                         ) VALUES (
                              :nombre, :descripcion, :precio_costo, :precio_venta, :stock_actual, 
-                             :codigo_barras, :categoria_id, :proveedor_id, :talle_id, :impuestos, :sucursal_id
+                             :codigo_barras, :categoria, :proveedor_id, :talle_id, :impuestos
                         )""")
         try:
             with engine.connect() as conn:
@@ -47,11 +48,10 @@ def agregar_producto():
                     "precio_venta": precio_venta,
                     "stock_actual": stock_actual,
                     "codigo_barras": codigo_barras,
-                    "categoria_id": categoria_id,
+                    "categoria_id": categoria,
                     "proveedor_id": proveedor_id,
                     "talle_id": talle_id,
-                    "impuestos": impuestos,
-                    "sucursal_id":sucursal_id
+                    "impuestos": impuestos
                 })
                 conn.commit()
                 flash("Producto agregado correctamente", "success")
